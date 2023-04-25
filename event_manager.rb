@@ -4,17 +4,16 @@ titulo = "Event manager initialize"
 puts titulo.colorize(:green).center(50)
 
 # comprobando si el archivo exist? 
-does_the_file_exist = File.exist? "../event_attenddes.csv"
+does_the_file_exist = File.exist? "../event_attendees.csv"
 puts "\nExiste el archivo: #{does_the_file_exist}"
 
 # leer el contenido de archivo completo
-content = File.read('../event_attenddes.csv')
+content = File.read("../event_attendees.csv")
 puts "\n#{content}"
 puts content.class
 
 # leyendo linea por linea
-lines = File.readlines "../event_attenddes.csv"
-
+lines = File.readlines "../event_attendees.csv"
 puts lines
 puts lines.class.to_s.colorize(:blue)
 
@@ -23,14 +22,14 @@ lines.each do |line|
 end
 
 # convirtiendo una caden de texto en una matriz String#split
-lines = File.readlines "../event_attenddes.csv"
+lines = File.readlines "../event_attendees.csv"
 lines.each do |line|
   content = line.colorize(:yellow).split(',')
   puts content
 end
 
 # acceder a first_name 
-lines = File.readlines "../event_attenddes.csv"
+lines = File.readlines "../event_attendees.csv"
 lines.each do |line|
   columns = line.split(',')
   name = columns[2]
@@ -38,7 +37,7 @@ lines.each do |line|
 end
 
 # saltarse la linea de encabezado descrito de forma literal
-lines = File.readlines "../event_attenddes.csv"
+lines = File.readlines "../event_attendees.csv"
 lines.each do |line|
   next if line == " ,RegDate,first_Name,last_Name,Email_Address,HomePhone,Street,City,State,Zipcode\n"
   content = line.split(',')
@@ -48,7 +47,7 @@ end
 
 # Usando otro enfoque para saltarse la linea de encabezado
 # Rastreando el índice de la linea actual
-lines = File.readlines "../event_attenddes.csv"
+lines = File.readlines "../event_attendees.csv"
 row_index = 0
 lines.each do |line|
   row_index += 1
@@ -59,7 +58,7 @@ lines.each do |line|
 end
 
 # Saltar la primera linea usando Array#each_with_index
-lines = File.readlines "../event_attenddes.csv"
+lines = File.readlines "../event_attendees.csv"
 lines.each_with_index do |line, ind|
   next if ind == 0
   content = line.split(',')
