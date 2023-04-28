@@ -91,6 +91,7 @@ contents = CSV.open "../event_attendees.csv", headers: true, header_converters: 
 contents.each do |row|
   name = row[:first_name]
   zipcode = clean_zipcode(row[:zipcode])
+  all_names = []
 
   puts "Name: #{name.colorize(:cyan)}, Zipcode: #{zipcode.colorize(:light_red)}"
 end
