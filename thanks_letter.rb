@@ -37,7 +37,7 @@ contents.each do |row|
   legislators = legislators_by_zipcode(zip_code)
 
   personal_letter = template_letter.gsub('FIRST_NAME', name)
-  personl_letter = template_letter.gsub!('LEGISLATORS', legislators)
+  personl_letter = template_letter.gsub('LEGISLATORS', legislators)
 
   puts personal_letter 
 end
