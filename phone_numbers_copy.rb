@@ -6,7 +6,7 @@
 # 5- Si el número de teléfono tiene más de 11 dígitos, suponga que es un número incorrecto 
 require 'csv'
 
-def format_phone_numbers(phone)
+def validate_phone_numbers(phone)
   numbers = ''
   
   phone.each_char do |num|
@@ -22,10 +22,9 @@ def format_phone_numbers(phone)
     puts "(#{numbers[0..2]}) #{numbers[3..5]}-#{numbers[6..10]}"
   elsif numbers.size == 11 && numbers[0] == '1' # 3
     puts 'Comienza con 1'
-    puts numbers[0]
-    puts numbers[1..11]
-  elsif numbers.size == 10 && numbers[0] != '1' # 4
-    puts 'No comienza con 1'
+    puts "(#{numbers[1..3]}) #{numbers[4..6]}-#{numbers[7..11]}"
+  elsif numbers.size == 11 && numbers[0] != '1' # 4
+    puts 'No comienza con 1 no es correcto'
   elsif numbers.size > 11 # 5 
     puts 'El número no es correcto mas de 11 dígitos'
   end
@@ -52,5 +51,5 @@ contents = CSV.open(
 
 contents.each do |row|
   puts row[:homephone]
-  puts correct_phone(row[:homephone])
+  puts validate_phone_numbers(row[:homephone])
 end
