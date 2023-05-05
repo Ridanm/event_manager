@@ -7,6 +7,12 @@ la mayor cantidad de personas, por lo que podemos
 publicar más anuncios durante esas horas”. ¡Interesante!
 =end
 require 'csv' 
+require 'time'
+require 'date'
+
+def format_hour(hour)
+ hour.gsub('/', '-')
+end
 
 contents = CSV.open(
   '../event_attendees.csv', 
@@ -15,5 +21,12 @@ contents = CSV.open(
 )
 
 contents.each do |row|
-  puts row[:regdate]
+  date_time = format_hour(row[:regdate])
+  #puts "Id #{row[:id]}- #{date_time}"
+  hour = Time.parse(date_time[-5..-1])
+  puts hour.strftime("%H:%M")
 end
+
+
+
+
