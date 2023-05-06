@@ -1,5 +1,4 @@
-Proyecto Gestor de Eventos 
-Proyecto Odin 
+Proyecto Odin Gestor de Eventos 
 
 - Manipular archivos la entrada y salida.
 - Leer contenido de un archivo CSV transformarlo de un formato estandarizado.
