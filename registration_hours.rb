@@ -9,10 +9,19 @@ Concluded for now
 =end
 require 'csv' 
 require 'time'
-require 'date'
+require 'colorize'
 
-def format_hour(hour)
- hour.gsub('/', '-')
+def text_color(text, color)
+  {
+    'green' => text.colorize(:green),
+    'yellow' => text.colorize(:yellow),
+    'red' => text.colorize(:red)
+  }[color]
+end
+
+def format_hours(data)
+  result = Time.strptime(data, '%m/%d/%Y %H:%M')
+  result.strftime('%H')
 end
 
 def peak_registration(hour)
@@ -21,7 +30,9 @@ def peak_registration(hour)
     hr[repit] += 1
     hr 
   end
-  registration.each { |key, val| puts "Hr:#{key} registration: #{val}"}
+  registration.each do |key, val|
+     puts "#{text_color('Hour: ', 'green')} #{key}, #{text_color('registration: ', 'yellow')} #{val}"
+  end
 end
 
 contents = CSV.open(
@@ -32,13 +43,14 @@ contents = CSV.open(
 
 rush_hour = []
 contents.each do |row|
-  date_time = format_hour(row[:regdate])
-  result = Time.parse(date_time[-5..-1])
-  hours = result.strftime("%H")
-  rush_hour << hours 
+  date_time = format_hours(row[:regdate])
+  rush_hour << date_time
 end
 
-puts "\nRegistration hours: "
+text = 'Times checked in per hour'
+space = text.size 
+title = text_color(text, 'green')
+puts "\n#{title.center(space*2)}\n\n"
 peak_registration(rush_hour)
 
 
